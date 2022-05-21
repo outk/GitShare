@@ -1,4 +1,5 @@
-FROM golang:1.18.2
+FROM golang:1.18-alpine
+
 
 WORKDIR /usr/local/go/src/gifshare/app
 
