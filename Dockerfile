@@ -1,11 +1,11 @@
 FROM golang:1.18.2
 
-WORKDIR /app
+WORKDIR /usr/local/go/src/gifshare/app
 
 COPY go.mod go.sum ./
-COPY app/ ./
-
 RUN go mod download
+
+COPY app/ ./
 RUN go build -o /gifshare
 
 EXPOSE 8080

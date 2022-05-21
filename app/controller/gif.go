@@ -1,11 +1,11 @@
 package controller
 
 import (
+	"gifshare/app/domain"
+	"gifshare/app/usecase"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/outk/gifshare/app/domain"
-	"github.com/outk/gifshare/app/usecase"
 )
 
 type getGifResponse struct {

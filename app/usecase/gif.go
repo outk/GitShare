@@ -1,8 +1,9 @@
 package usecase
 
 import (
+	"gifshare/app/domain"
+
 	"github.com/gin-gonic/gin"
-	"github.com/outk/gifshare/app/domain"
 )
 
 func GetGif(ctx *gin.Context) (domain.Content, error) {

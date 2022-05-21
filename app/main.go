@@ -1,8 +1,9 @@
 package main
 
 import (
+	"gifshare/app/controller"
+
 	"github.com/gin-gonic/gin"
-	"github.com/outk/gifshare/app/controller"
 )
 
 func main() {

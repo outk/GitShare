@@ -1,4 +1,4 @@
-module github.com/outk/gifshare
+module gifshare
 
 go 1.18
 
