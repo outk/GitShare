@@ -5,16 +5,41 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/outk/gifshare/app/domain"
+	"github.com/outk/gifshare/app/usecase"
 )
 
+type getGifResponse struct {
+	Name string `json:"name"`
+}
+
+type postGifRequest struct {
+	Name string `json:"name" binding:"required"`
+}
+
 func GetGif(ctx *gin.Context) {
-	ctx.String(200, "gif")
+	content, err := usecase.GetGif(ctx)
+	if err != nil {
+		ctx.String(http.StatusInternalServerError, "internal server error")
+		return
+	}
+	ctx.JSON(http.StatusOK, getGifResponse{
+		Name: string(content.Name),
+	})
+	return
 }
 
 func PostGif(ctx *gin.Context) {
-	var content domain.Content
-	ctx.ShouldBind(&content)
-	ctx.JSON(http.StatusOK, gin.H{
-		"gif": "This is a gif.",
-	})
+	var request postGifRequest
+
+	if err := ctx.ShouldBind(&request); err != nil {
+		ctx.String(http.StatusBadRequest, "bad request")
+		return
+	}
+
+	if err := usecase.CreateGif(ctx, domain.Content{
+		Name: domain.Name(request.Name),
+	}); err != nil {
+		ctx.String(http.StatusInternalServerError, "internal server error")
+	}
+	return
 }

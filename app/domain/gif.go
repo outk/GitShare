@@ -1,8 +1,8 @@
 package domain
 
 type Content struct {
-	Name Name `json:"name" binding:"required"`
-	Gif  Gif  `json:"gif" binding:"required"`
+	Name Name
+	Gif  Gif
 }
 
 type Name string
